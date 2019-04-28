@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Movie Exit Poll</string>
+    <string name="home_instruction">Please pick the movie you went to see:</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_stats">Stats</string>
+    <string name="movie_1">Lego Movie 2</string>
+    <string name="movie_1_short">Lego</string>
+    <string name="movie_2">Captain Marvel</string>
+    <string name="movie_2_short">Marvel</string>
+    <string name="movie_3">How to Train Your Dragon</string>
+    <string name="movie_3_short">Dragon</string>
+    <string name="movie_4">Aquaman</string>
+    <string name="movie_4_short">Aquaman</string>
+    <string name="movie_5">Mary Poppins</string>
+    <string name="movie_5_short">Poppins</string>
+    <string name="not_at_all">very unlikely</string>
+    <string name="unlikely">unlikely</string>
+    <string name="maybe">maybe</string>
+    <string name="likely">likely</string>
+    <string name="very">very likely</string>
+    <string name="submit">submit</string>
+    <string name="survey_sucess">Poll Submission Success!</string>
+    <string name="survey_sucess_message">Your responses have been recorded. Thanks!</string>
+    <string name="notification_channel_name">Movie Poll Notification</string>
+    <string name="notification_channel_description">Movie Poll Notification</string>
+</resources>
