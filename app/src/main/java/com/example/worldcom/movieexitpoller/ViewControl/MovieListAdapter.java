@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
 
-    private final List<String> mMovieList;
+    private List<String> mMovieList;
     private final LayoutInflater mInflater;
 
     class MovieViewHolder extends RecyclerView.ViewHolder
@@ -46,9 +46,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         }
     }
 
-    public MovieListAdapter(Context context, List<String> movieList) {
+    public MovieListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
-        this.mMovieList = movieList;
     }
 
     @Override
@@ -69,8 +68,15 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.movieItemView.setText(mCurrent);
     }
 
+    public void setMovies(List<String> movies){
+        mMovieList = movies;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return mMovieList.size();
+        if (mMovieList != null)
+            return mMovieList.size();
+        else return 0;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.worldcom.movieexitpoller.ViewControl;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.example.worldcom.movieexitpoller.Room.Response;
@@ -11,8 +12,8 @@ import java.util.List;
 
 public class ResponseRepository {
     private ResponseDao mResponseDao;
-    private List<Response> mAllResponse;
-    private List<Integer> mAnswersForQuestion;
+    private LiveData<List<Response>> mAllResponse;
+    private LiveData<List<Integer>> mAnswerAverageForQuestion;
     Integer movieId;
     Integer questionId;
 
@@ -20,33 +21,27 @@ public class ResponseRepository {
         ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(application);
         mResponseDao = db.responseDao();
         mAllResponse = mResponseDao.getAllResponses();
-        mAnswersForQuestion = mResponseDao.getAnswers(movieId, questionId);
+        mAnswerAverageForQuestion = mResponseDao.getAnswers(movieId, questionId);
     }
 
-    public List<Response> getAllResponses() {
+    public LiveData<List<Response>> getAllResponses() {
         return mAllResponse;
     }
 
-    List<Integer> getAnswers() {
-        return mAnswersForQuestion;
+    public int getAnswerAverage() {
+        return calculateAverage(mAnswerAverageForQuestion);
     }
 
-    public void insert (Response response) {
-        new insertAsyncTask(mResponseDao).execute(response);
-    }
+    private int calculateAverage(LiveData<List<Integer>> liveMark) {
+        int sum = 0;
+        List<Integer> marks = liveMark.getValue();
 
-    private static class insertAsyncTask extends AsyncTask<Response, Void, Void> {
-
-        private ResponseDao mAsyncTaskDao;
-
-        insertAsyncTask(ResponseDao dao) {
-            mAsyncTaskDao = dao;
+        if(!marks.isEmpty()) {
+            for (int mark : marks) {
+                sum += mark;
+            }
+            return sum / marks.size();
         }
-
-        @Override
-        protected Void doInBackground(final Response... params) {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
+        return sum;
     }
 }

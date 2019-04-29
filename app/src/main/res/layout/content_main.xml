@@ -29,7 +29,7 @@ limitations under the License. -->
     tools:showIn="@layout/activity_main">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recyclerview_main"
         android:layout_width="237dp"
         android:layout_height="520dp"
         android:layout_margin="16dp"
@@ -40,10 +40,10 @@ limitations under the License. -->
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.214"
         tools:listitem="@layout/recyclerview_item" />
 
 </android.support.constraint.ConstraintLayout>

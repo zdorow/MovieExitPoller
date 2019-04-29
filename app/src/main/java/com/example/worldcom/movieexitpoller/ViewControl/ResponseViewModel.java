@@ -2,6 +2,7 @@ package com.example.worldcom.movieexitpoller.ViewControl;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 
 import com.example.worldcom.movieexitpoller.Room.Response;
 
@@ -11,15 +12,22 @@ public class ResponseViewModel extends AndroidViewModel {
 
     private ResponseRepository mRepository;
 
-    private List<Response> mAllResponses;
+    private LiveData<List<Response>> mAllResponses;
+    private int mAnswerAverage;
 
     public ResponseViewModel(Application application) {
         super(application);
         mRepository = new ResponseRepository(application);
         mAllResponses = mRepository.getAllResponses();
+        mAnswerAverage = mRepository.getAnswerAverage();
     }
 
-    public List<Response> getAllResponses() { return mAllResponses; }
+    public LiveData<List<Response>> getAllResponses() { return mAllResponses; }
 
-    public void insert(Response response) { mRepository.insert(response); }
+    public int getAnswerAverage() {
+        return mAnswerAverage;
+    }
+
+
+
 }

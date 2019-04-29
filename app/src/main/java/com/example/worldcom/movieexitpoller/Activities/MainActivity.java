@@ -1,23 +1,27 @@
 package com.example.worldcom.movieexitpoller.Activities;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
-import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
 import com.example.worldcom.movieexitpoller.R;
+import com.example.worldcom.movieexitpoller.ViewControl.MovieListViewModel;
 import com.idescout.sql.SqlScoutServer;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MovieListViewModel mMovieListViewModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,18 +48,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(MainActivity.this);
-        List<String> moviesList = db.responseDao().getMovieNames();
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerview_main);
+        mMovieListViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
 
         SqlScoutServer.create(this, getPackageName());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerview);
-        MovieListAdapter mAdapter = new MovieListAdapter(this, moviesList);
+        final MovieListAdapter mAdapter = new MovieListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mMovieListViewModel.getAllMovies().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+               mAdapter.setMovies(strings);
+            }
+        });
     }
 
 }
