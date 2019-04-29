@@ -54,7 +54,7 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
-        ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(StatsActivity.this);
+        ResponseRoomDatabase db = ResponseRoomDatabase.getInstance();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

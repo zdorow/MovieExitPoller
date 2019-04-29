@@ -7,8 +7,10 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Database(entities = {Response.class}, version = 2,  exportSchema = false)
@@ -53,6 +55,8 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
 
+            List<String> currentMovieNames = CurrentMovies.getAll();
+
             Integer movieId1 = 1;
             Integer movieId2 = 2;
             Integer movieId3 = 3;
@@ -69,7 +73,7 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
 
             }};
             for (Map.Entry<Integer, Integer> entry : movie1Responses.entrySet()){
-                Response response = new Response(movieId1, entry.getKey(), entry.getValue());
+                Response response = new Response(currentMovieNames.get(0), movieId1, entry.getKey(), entry.getValue());
                 mDao.insert(response);
             }
 
@@ -82,7 +86,7 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
                 put(6,5);
             }};
             for (Map.Entry<Integer, Integer> entry : movie2Responses.entrySet()){
-                Response response = new Response(movieId2, entry.getKey(), entry.getValue());
+                Response response = new Response(currentMovieNames.get(1), movieId2, entry.getKey(), entry.getValue());
                 mDao.insert(response);
             }
 
@@ -96,7 +100,7 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             }};
 
             for (Map.Entry<Integer, Integer> entry : movie3Responses.entrySet()){
-                Response response = new Response(movieId3, entry.getKey(), entry.getValue());
+                Response response = new Response(currentMovieNames.get(2), movieId3, entry.getKey(), entry.getValue());
                 mDao.insert(response);
             }
             Map<Integer, Integer> movie4Responses = new HashMap<Integer, Integer>() {{
@@ -109,7 +113,7 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             }};
 
             for (Map.Entry<Integer, Integer> entry : movie4Responses.entrySet()){
-                Response response = new Response(movieId4, entry.getKey(), entry.getValue());
+                Response response = new Response(currentMovieNames.get(3), movieId4, entry.getKey(), entry.getValue());
                 mDao.insert(response);
             }
 
@@ -123,10 +127,14 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             }};
 
             for (Map.Entry<Integer, Integer> entry : movie5Responses.entrySet()){
-                Response response = new Response(movieId5, entry.getKey(), entry.getValue());
+                Response response = new Response(currentMovieNames.get(4), movieId5, entry.getKey(), entry.getValue());
                 mDao.insert(response);
             }
             return null;
         }
+    }
+
+    public static ResponseRoomDatabase getInstance(){
+        return INSTANCE;
     }
 }

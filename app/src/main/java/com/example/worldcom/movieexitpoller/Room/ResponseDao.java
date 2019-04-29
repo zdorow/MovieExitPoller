@@ -1,5 +1,6 @@
 package com.example.worldcom.movieexitpoller.Room;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -17,6 +18,9 @@ public interface ResponseDao {
 
     @Query("SELECT questionAnswer from responseTable where movieId = :mId AND questionId = :questionId")
     List<Integer> getAnswers(Integer mId, Integer questionId);
+
+    @Query("SELECT DISTINCT movieName from responseTable")
+    List<String> getMovieNames();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Response response);

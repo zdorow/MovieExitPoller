@@ -1,7 +1,11 @@
-package com.example.worldcom.movieexitpoller.Room;
+package com.example.worldcom.movieexitpoller.ViewControl;
 
 import android.app.Application;
 import android.os.AsyncTask;
+
+import com.example.worldcom.movieexitpoller.Room.Response;
+import com.example.worldcom.movieexitpoller.Room.ResponseDao;
+import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 
 import java.util.List;
 

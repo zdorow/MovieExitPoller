@@ -11,8 +11,9 @@ public class Response {
     @PrimaryKey (autoGenerate = true)
     public int keyId;
 
-    public Response( @NonNull Integer movieId, @NonNull Integer questionId,
+    public Response(@NonNull String movieName, @NonNull Integer movieId, @NonNull Integer questionId,
                      @NonNull Integer questionAnswer) {
+        this.movieName = movieName;
         this.movieId = movieId;
         this.questionId = questionId;
         this.questionAnswer = questionAnswer;
@@ -24,7 +25,7 @@ public class Response {
     public String getMovieName(){return this.movieName;
     }
     
-    public String setMovieName(String movieId){
+    public String setMovieName(String movieName){
         this.movieName = movieName;
         return movieName;
     }

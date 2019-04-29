@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
+import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
 import com.example.worldcom.movieexitpoller.R;
 import com.idescout.sql.SqlScoutServer;
@@ -17,8 +18,6 @@ import com.idescout.sql.SqlScoutServer;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final List<String> moviesList = CurrentMovies.getAll();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(MainActivity.this);
+        List<String> moviesList = db.responseDao().getMovieNames();
+
         SqlScoutServer.create(this, getPackageName());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);

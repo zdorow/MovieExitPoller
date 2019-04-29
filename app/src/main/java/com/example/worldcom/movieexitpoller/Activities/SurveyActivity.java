@@ -22,8 +22,10 @@ import android.widget.Toast;
 import com.example.worldcom.movieexitpoller.R;
 import com.example.worldcom.movieexitpoller.Room.Response;
 import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
+import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SurveyActivity extends AppCompatActivity {
@@ -63,7 +65,7 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey);
 
         createNotificationChannel();
-        final ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(SurveyActivity.this);
+        final ResponseRoomDatabase db = ResponseRoomDatabase.getInstance();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -94,41 +96,49 @@ public class SurveyActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
+
+                    List<String> currentMovieNames = CurrentMovies.getAll();
                     RadioButton answer1 = findViewById(question1.getCheckedRadioButtonId());
-                    Response response1 = new Response(movieID + 1, 1,
+                    Response response1 = new Response(currentMovieNames.get(movieID),movieID + 1, 1,
                             answerValueParser(answer1.getText().toString()));
                     insertResponse(response1, db);
-                    Log.i("Response Answer Value", answerValueParser(answer1.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer1.getText().toString()).toString());
 
                     RadioButton answer2 = findViewById(question2.getCheckedRadioButtonId());
-                    Response response2 = new Response(movieID + 1, 2,
+                    Response response2 = new Response(currentMovieNames.get(movieID),movieID + 1, 2,
                             answerValueParser(answer2.getText().toString()));
                     insertResponse(response2, db);
-                    Log.i("Response Answer Value", answerValueParser(answer2.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer2.getText().toString()).toString());
 
                     RadioButton answer3 = findViewById(question3.getCheckedRadioButtonId());
-                    Response response3 = new Response(movieID + 1, 3,
+                    Response response3 = new Response(currentMovieNames.get(movieID),movieID + 1, 3,
                             answerValueParser(answer3.getText().toString()));
                     insertResponse(response3, db);
-                    Log.i("Response Answer Value", answerValueParser(answer3.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer3.getText().toString()).toString());
 
                     RadioButton answer4 = findViewById(question4.getCheckedRadioButtonId());
-                    Response response4 = new Response(movieID + 1, 4,
+                    Response response4 = new Response(currentMovieNames.get(movieID),movieID + 1, 4,
                             answerValueParser(answer4.getText().toString()));
                     insertResponse(response4, db);
-                    Log.i("Response Answer Value", answerValueParser(answer4.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer4.getText().toString()).toString());
 
                     RadioButton answer5 = findViewById(question5.getCheckedRadioButtonId());
-                    Response response5 = new Response(movieID + 1, 5,
+                    Response response5 = new Response(currentMovieNames.get(movieID),movieID + 1, 5,
                             answerValueParser(answer5.getText().toString()));
                     insertResponse(response5, db);
-                    Log.i("Response Answer Value", answerValueParser(answer5.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer5.getText().toString()).toString());
 
                     RadioButton answer6 = findViewById(question6.getCheckedRadioButtonId());
-                    Response response6 = new Response(movieID + 1, 6,
+                    Response response6 = new Response(currentMovieNames.get(movieID),movieID + 1, 6,
                             answerValueParser(answer6.getText().toString()));
                     insertResponse(response6, db);
-                    Log.i("Response Answer Value", answerValueParser(answer6.getText().toString()).toString());
+                    Log.i("Response Answer Value", currentMovieNames.get(movieID) +
+                            answerValueParser(answer6.getText().toString()).toString());
 
                     sendNotification();
 

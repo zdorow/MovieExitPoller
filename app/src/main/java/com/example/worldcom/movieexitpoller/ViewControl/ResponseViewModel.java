@@ -4,7 +4,6 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 
 import com.example.worldcom.movieexitpoller.Room.Response;
-import com.example.worldcom.movieexitpoller.Room.ResponseRepository;
 
 import java.util.List;
 
