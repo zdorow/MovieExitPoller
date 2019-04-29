@@ -1,9 +1,11 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Room;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+
+import com.example.worldcom.movieexitpoller.Room.Response;
 
 import java.util.List;
 

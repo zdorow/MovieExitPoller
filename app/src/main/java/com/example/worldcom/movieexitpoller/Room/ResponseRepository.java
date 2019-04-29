@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Room;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -12,14 +12,14 @@ public class ResponseRepository {
     Integer movieId;
     Integer questionId;
 
-    ResponseRepository(Application application) {
+    public ResponseRepository(Application application) {
         ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(application);
         mResponseDao = db.responseDao();
         mAllResponse = mResponseDao.getAllResponses();
         mAnswersForQuestion = mResponseDao.getAnswers(movieId, questionId);
     }
 
-    List<Response> getAllResponses() {
+    public List<Response> getAllResponses() {
         return mAllResponse;
     }
 

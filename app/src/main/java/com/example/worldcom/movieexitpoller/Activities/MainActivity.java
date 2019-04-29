@@ -1,6 +1,5 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Activities;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
+import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
+import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
+import com.example.worldcom.movieexitpoller.R;
 import com.idescout.sql.SqlScoutServer;
 
 import java.util.List;

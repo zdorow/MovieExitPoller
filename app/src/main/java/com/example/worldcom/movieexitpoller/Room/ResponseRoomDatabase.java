@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Room;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -7,7 +7,6 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,7 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
 
     private static ResponseRoomDatabase INSTANCE;
 
-    static ResponseRoomDatabase getDatabase(final Context context) {
+    public static ResponseRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (ResponseRoomDatabase.class) {
                 if (INSTANCE == null) {

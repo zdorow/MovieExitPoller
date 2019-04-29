@@ -1,9 +1,10 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.ViewControl;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+
+import com.example.worldcom.movieexitpoller.Room.Response;
+import com.example.worldcom.movieexitpoller.Room.ResponseRepository;
 
 import java.util.List;
 

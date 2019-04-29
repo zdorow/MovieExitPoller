@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.ViewControl;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.worldcom.movieexitpoller.Activities.SurveyActivity;
+import com.example.worldcom.movieexitpoller.R;
 
 import java.util.List;
 

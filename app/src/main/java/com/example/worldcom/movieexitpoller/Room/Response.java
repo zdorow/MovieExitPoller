@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Room;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -19,11 +19,22 @@ public class Response {
     }
 
     @NonNull
+    @ColumnInfo(name = "movieName")
+    private String movieName;
+    public String getMovieName(){return this.movieName;
+    }
+    
+    public String setMovieName(String movieId){
+        this.movieName = movieName;
+        return movieName;
+    }
+
+    @NonNull
     @ColumnInfo(name = "movieId")
     private Integer movieId;
     public Integer getMovieId(){return this.movieId;
     }
-    
+
     public Integer setMovieId(Integer movieId){
         this.movieId = movieId;
         return movieId;

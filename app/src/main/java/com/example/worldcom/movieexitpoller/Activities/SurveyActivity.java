@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Activities;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -18,6 +18,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.worldcom.movieexitpoller.R;
+import com.example.worldcom.movieexitpoller.Room.Response;
+import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
