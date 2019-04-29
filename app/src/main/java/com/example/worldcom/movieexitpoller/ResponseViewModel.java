@@ -11,7 +11,7 @@ public class ResponseViewModel extends AndroidViewModel {
 
     private ResponseRepository mRepository;
 
-    private LiveData<List<Response>> mAllResponses;
+    private List<Response> mAllResponses;
 
     public ResponseViewModel(Application application) {
         super(application);
@@ -19,7 +19,7 @@ public class ResponseViewModel extends AndroidViewModel {
         mAllResponses = mRepository.getAllResponses();
     }
 
-    public LiveData<List<Response>> getAllResponses() { return mAllResponses; }
+    public List<Response> getAllResponses() { return mAllResponses; }
 
     public void insert(Response response) { mRepository.insert(response); }
 }

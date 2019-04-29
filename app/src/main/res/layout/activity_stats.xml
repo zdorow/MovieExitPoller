@@ -45,30 +45,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.jjoe64.graphview.GraphView
-                android:id="@+id/line_graph1"
-                android:layout_width="403dp"
-                android:layout_height="196dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/line_graph2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/line_graph2"
-                android:layout_width="403dp"
-                android:layout_height="196dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/bar_graph1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line_graph1" />
-
-            <com.jjoe64.graphview.GraphView
                 android:id="@+id/bar_graph1"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
@@ -78,7 +54,7 @@
                 android:layout_marginBottom="32dp"
                 app:layout_constraintBottom_toTopOf="@+id/bar_graph2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line_graph2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/bar_graph2"
@@ -112,9 +88,34 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/bar_graph5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bar_graph3" />
+
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/bar_graph5"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/bar_graph6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bar_graph4" />
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/bar_graph6"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bar_graph5" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>

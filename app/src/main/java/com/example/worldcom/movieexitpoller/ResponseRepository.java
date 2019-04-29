@@ -1,15 +1,14 @@
 package com.example.worldcom.movieexitpoller;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import java.util.List;
 
 public class ResponseRepository {
     private ResponseDao mResponseDao;
-    private LiveData<List<Response>> mAllResponse;
-    private LiveData<List<Integer>> mAnswersForQuestion;
+    private List<Response> mAllResponse;
+    private List<Integer> mAnswersForQuestion;
     Integer movieId;
     Integer questionId;
 
@@ -20,11 +19,11 @@ public class ResponseRepository {
         mAnswersForQuestion = mResponseDao.getAnswers(movieId, questionId);
     }
 
-    LiveData<List<Response>> getAllResponses() {
+    List<Response> getAllResponses() {
         return mAllResponse;
     }
 
-    LiveData<List<Integer>> getAnswers() {
+    List<Integer> getAnswers() {
         return mAnswersForQuestion;
     }
 

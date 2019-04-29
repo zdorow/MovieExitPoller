@@ -3,8 +3,6 @@ package com.example.worldcom.movieexitpoller;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -22,7 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SurveyActivity extends AppCompatActivity {
@@ -31,12 +28,9 @@ public class SurveyActivity extends AppCompatActivity {
     private static final String ACTION_UPDATE_NOTIFICATION =
             "com.example.worldcom.movieexitpoller.ACTION_UPDATE_NOTIFICATION";
     // Notification channel ID.
-    private static final String PRIMARY_CHANNEL_ID =
-            "primary_notification_channel";
+    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     // Notification ID.
     private static final int NOTIFICATION_ID = 0;
-
-    private ResponseRepository mResponseRepository;
 
     private NotificationManager mNotifyManager;
 
@@ -65,6 +59,7 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey);
 
         createNotificationChannel();
+        final ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(SurveyActivity.this);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -98,37 +93,37 @@ public class SurveyActivity extends AppCompatActivity {
                     RadioButton answer1 = findViewById(question1.getCheckedRadioButtonId());
                     Response response1 = new Response(movieID + 1, 1,
                             answerValueParser(answer1.getText().toString()));
-                    insertResponse(response1, mResponseRepository);
+                    insertResponse(response1, db);
                     Log.i("Response Answer Value", answerValueParser(answer1.getText().toString()).toString());
 
                     RadioButton answer2 = findViewById(question2.getCheckedRadioButtonId());
                     Response response2 = new Response(movieID + 1, 2,
                             answerValueParser(answer2.getText().toString()));
-                    insertResponse(response2, mResponseRepository);
+                    insertResponse(response2, db);
                     Log.i("Response Answer Value", answerValueParser(answer2.getText().toString()).toString());
 
                     RadioButton answer3 = findViewById(question3.getCheckedRadioButtonId());
                     Response response3 = new Response(movieID + 1, 3,
                             answerValueParser(answer3.getText().toString()));
-                    insertResponse(response3, mResponseRepository);
+                    insertResponse(response3, db);
                     Log.i("Response Answer Value", answerValueParser(answer3.getText().toString()).toString());
 
                     RadioButton answer4 = findViewById(question4.getCheckedRadioButtonId());
                     Response response4 = new Response(movieID + 1, 4,
                             answerValueParser(answer4.getText().toString()));
-                    insertResponse(response4, mResponseRepository);
+                    insertResponse(response4, db);
                     Log.i("Response Answer Value", answerValueParser(answer4.getText().toString()).toString());
 
                     RadioButton answer5 = findViewById(question5.getCheckedRadioButtonId());
                     Response response5 = new Response(movieID + 1, 5,
                             answerValueParser(answer5.getText().toString()));
-                    insertResponse(response5, mResponseRepository);
+                    insertResponse(response5, db);
                     Log.i("Response Answer Value", answerValueParser(answer5.getText().toString()).toString());
 
                     RadioButton answer6 = findViewById(question6.getCheckedRadioButtonId());
                     Response response6 = new Response(movieID + 1, 6,
                             answerValueParser(answer6.getText().toString()));
-                    insertResponse(response6, mResponseRepository);
+                    insertResponse(response6, db);
                     Log.i("Response Answer Value", answerValueParser(answer6.getText().toString()).toString());
 
                     sendNotification();
@@ -140,22 +135,12 @@ public class SurveyActivity extends AppCompatActivity {
         });
     }
 
-    public static void insertResponse(final Response response, final ResponseRepository mResponseRepository) {
+    public static void insertResponse(final Response response, final ResponseRoomDatabase db) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-
-                //List<Response> responses = mResponseViewModel.getAllResponses();
                 Log.i("RECENT INSERT", response.getMovieId().toString() + response.getQuestionId().toString() + response.getQuestionAnswer().toString());
-                mResponseRepository.insert(response);
-//                List<Integer> recentInsertChange  = mResponseViewModel.getAnswers(response.getMovieId(), response.getQuestionId());
-//                for(Integer i : recentInsertChange) {
-//                    Log.i("RECENT ", i.toString());
-//                }
-//                List<Response> all = responseDao.getAllResponses();
-//                for(Response r : responses) {
-//                    Log.i("All DATA", String.valueOf(r.getMovieId() + r.getQuestionId() + r.getQuestionAnswer()));
-//                }
+                db.responseDao().insert(response);
                 return null;
             }
         }.execute();

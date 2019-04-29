@@ -12,7 +12,7 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-@Database(entities = {Response.class}, version = 3,  exportSchema = false)
+@Database(entities = {Response.class}, version = 2,  exportSchema = false)
 public abstract class ResponseRoomDatabase extends RoomDatabase {
 
     public abstract ResponseDao responseDao();
@@ -47,8 +47,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
 
         private final ResponseDao mDao;
 
-
-
         PopulateDbAsync(ResponseRoomDatabase db) {
             mDao = db.responseDao();
         }
@@ -74,7 +72,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             for (Map.Entry<Integer, Integer> entry : movie1Responses.entrySet()){
                 Response response = new Response(movieId1, entry.getKey(), entry.getValue());
                 mDao.insert(response);
-                Log.i("Inserted", String.valueOf(movieId1 + entry.getKey() + entry.getValue()));
             }
 
             Map<Integer, Integer> movie2Responses = new HashMap<Integer, Integer>() {{
@@ -88,7 +85,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             for (Map.Entry<Integer, Integer> entry : movie2Responses.entrySet()){
                 Response response = new Response(movieId2, entry.getKey(), entry.getValue());
                 mDao.insert(response);
-                Log.i("Inserted", String.valueOf(movieId2 + entry.getKey() + entry.getValue()));
             }
 
             Map<Integer, Integer> movie3Responses = new HashMap<Integer, Integer>() {{
@@ -103,7 +99,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             for (Map.Entry<Integer, Integer> entry : movie3Responses.entrySet()){
                 Response response = new Response(movieId3, entry.getKey(), entry.getValue());
                 mDao.insert(response);
-                Log.i("Inserted", String.valueOf(movieId3 + entry.getKey() + entry.getValue()));
             }
             Map<Integer, Integer> movie4Responses = new HashMap<Integer, Integer>() {{
                 put(1,5);
@@ -117,7 +112,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             for (Map.Entry<Integer, Integer> entry : movie4Responses.entrySet()){
                 Response response = new Response(movieId4, entry.getKey(), entry.getValue());
                 mDao.insert(response);
-                Log.i("Inserted", String.valueOf(movieId4 + entry.getKey() + entry.getValue()));
             }
 
             Map<Integer, Integer> movie5Responses = new HashMap<Integer, Integer>() {{
@@ -132,7 +126,6 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             for (Map.Entry<Integer, Integer> entry : movie5Responses.entrySet()){
                 Response response = new Response(movieId5, entry.getKey(), entry.getValue());
                 mDao.insert(response);
-                Log.i("Inserted", String.valueOf(movieId5 + entry.getKey() + entry.getValue()));
             }
             return null;
         }

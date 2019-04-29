@@ -8,19 +8,14 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "responseTable")
 public class Response {
 
-    public Response(@NonNull String movie, @NonNull Integer movieId, @NonNull Integer questionId,
-                    @NonNull Integer questionAnswer) {
-        this.movie = movie;
+    @PrimaryKey (autoGenerate = true)
+    public int keyId;
+
+    public Response( @NonNull Integer movieId, @NonNull Integer questionId,
+                     @NonNull Integer questionAnswer) {
         this.movieId = movieId;
         this.questionId = questionId;
         this.questionAnswer = questionAnswer;
-    }
-
-    @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "movie")
-    private String movie;
-    public String getMovie(){return this.movie;
     }
 
     @NonNull
