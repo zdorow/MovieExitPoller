@@ -133,8 +133,4 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             return null;
         }
     }
-
-    public static ResponseRoomDatabase getInstance(){
-        return INSTANCE;
-    }
 }

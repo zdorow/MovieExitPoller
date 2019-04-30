@@ -3,7 +3,6 @@ package com.example.worldcom.movieexitpoller.ViewControl;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 
-import com.example.worldcom.movieexitpoller.Room.Response;
 import com.example.worldcom.movieexitpoller.Room.ResponseDao;
 import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 

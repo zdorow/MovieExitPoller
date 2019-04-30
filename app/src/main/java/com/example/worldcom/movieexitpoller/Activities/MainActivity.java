@@ -12,10 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
 import com.example.worldcom.movieexitpoller.R;
 import com.example.worldcom.movieexitpoller.ViewControl.MovieListViewModel;
-import com.idescout.sql.SqlScoutServer;
+import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
 
 import java.util.List;
 
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RecyclerView mRecyclerView = findViewById(R.id.recyclerview_main);
         mMovieListViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
-
-        SqlScoutServer.create(this, getPackageName());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
