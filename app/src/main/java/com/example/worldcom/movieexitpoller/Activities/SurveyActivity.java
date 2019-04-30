@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,11 +21,8 @@ import android.widget.Toast;
 
 import com.example.worldcom.movieexitpoller.R;
 import com.example.worldcom.movieexitpoller.Room.Response;
-import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
 import com.example.worldcom.movieexitpoller.Helpers.CurrentMovies;
 import com.example.worldcom.movieexitpoller.ViewControl.InsertViewModel;
-import com.example.worldcom.movieexitpoller.ViewControl.MovieListViewModel;
-import com.example.worldcom.movieexitpoller.ViewControl.ResponseViewModel;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +53,7 @@ public class SurveyActivity extends AppCompatActivity {
                     startActivity(intentMovies);
                     return true;
                 case R.id.navigation_stats:
-                    Intent intentStats = new Intent(SurveyActivity.this, StatsActivity.class);
+                    Intent intentStats = new Intent(SurveyActivity.this, StatsActivity1.class);
                     startActivity(intentStats);
                     return true;
             }
@@ -79,7 +75,7 @@ public class SurveyActivity extends AppCompatActivity {
         final Integer movieID = getIntent().getIntExtra("MOVIE_ID", 0);
         Log.i("Movie ID", "The movie number has been set to " + movieID);
 
-        final Intent intentSurvey = new Intent(SurveyActivity.this, StatsActivity.class);
+        final Intent intentSurvey = new Intent(SurveyActivity.this, StatsActivity1.class);
         final Button submitButton = findViewById(R.id.submitButton);
         final RadioGroup question1 = findViewById(R.id.radioGroup1);
         final RadioGroup question2 = findViewById(R.id.radioGroup2);

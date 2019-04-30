@@ -10,9 +10,9 @@
     <string name="movie_3">How to Train Your Dragon</string>
     <string name="movie_3_short">Dragon</string>
     <string name="movie_4">Aquaman</string>
-    <string name="movie_4_short">Aquaman</string>
+    <string name="movie_4_short">Aqua</string>
     <string name="movie_5">Mary Poppins</string>
-    <string name="movie_5_short">Poppins</string>
+    <string name="movie_5_short">Pop</string>
     <string name="not_at_all">very unlikely</string>
     <string name="unlikely">unlikely</string>
     <string name="maybe">maybe</string>
@@ -23,4 +23,7 @@
     <string name="survey_sucess_message">Your responses have been recorded. Thanks!</string>
     <string name="notification_channel_name">Movie Poll Notification</string>
     <string name="notification_channel_description">Movie Poll Notification</string>
+    <string name="next_graph">Next Graph</string>
+    <string name="recent_results">Here are the most recent results of the surveys:</string>
+    <string name="begin_poll">Take another poll</string>
 </resources>

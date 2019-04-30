@@ -1,32 +1,32 @@
 package com.example.worldcom.movieexitpoller.Activities;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.worldcom.movieexitpoller.R;
-import com.example.worldcom.movieexitpoller.Room.ResponseRoomDatabase;
+import com.example.worldcom.movieexitpoller.ViewControl.ResponseAdapter;
+import com.example.worldcom.movieexitpoller.ViewControl.ResponseViewModel;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+public class StatsActivity1 extends AppCompatActivity {
 
-public class StatsActivity extends AppCompatActivity {
-
-//    private int lastX = 0;
-//    LineGraphSeries<DataPoint> barGraph_Data1;
+    private ResponseViewModel mResponseViewModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,12 +35,12 @@ public class StatsActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_movies:
-                    Intent intentMovies = new Intent(StatsActivity.this, MainActivity.class);
+                    Intent intentMovies = new Intent(StatsActivity1.this, MainActivity.class);
                     intentMovies.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentMovies);
                     return true;
                 case R.id.navigation_stats:
-                    Intent intentStats = new Intent(StatsActivity.this, StatsActivity.class);
+                    Intent intentStats = new Intent(StatsActivity1.this, StatsActivity1.class);
                     intentStats.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentStats);
                     return true;
@@ -52,18 +52,112 @@ public class StatsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_stats1);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        final Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentStats = new Intent(StatsActivity1.this, StatsActivity2.class);
+                intentStats.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentStats);
+            }
+        });
+
+        String fillerForbug = "";
         String movie_1 = getString(R.string.movie_1_short);
         String movie_2 = getString(R.string.movie_2_short);
         String movie_3 = getString(R.string.movie_3_short);
         String movie_4 = getString(R.string.movie_4_short);
         String movie_5 = getString(R.string.movie_5_short);
+
+        mResponseViewModel = ViewModelProviders.of(this).get(ResponseViewModel.class);
+        final ResponseAdapter mAdapter = new ResponseAdapter(this);
+
+        //Bar Graph 1 population.
+
+        final BarGraphSeries<DataPoint> barGraph_Data1 = new BarGraphSeries<>(new DataPoint[]{});
+        barGraph_Data1.resetData(new DataPoint[] {});
+
+        GraphView bar_graph1 = findViewById(R.id.bar_graph1);
+
+        bar_graph1.setTitle("Average Recommended Movies");
+        final StaticLabelsFormatter staticLabelsForBarGraphs = new StaticLabelsFormatter(bar_graph1);
+
+        bar_graph1.getGridLabelRenderer().setVerticalLabelsVisible(false);
+        bar_graph1.getGridLabelRenderer().setNumVerticalLabels(4);
+        bar_graph1.getGridLabelRenderer().setLabelFormatter(staticLabelsForBarGraphs);
+
+        // This is for a bug since it will only set the bar at the lowest set value.
+        barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, 0), false, 6);
+
+        mResponseViewModel.getAnswerAverage1_1().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer number) {
+                mAdapter.setAverageAnswerForQuestion1_1(number);
+                barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, number), false, 6);
+                Log.i("Loaded Averages", number.toString());
+
+                mResponseViewModel.getAnswerAverage1_2().observe(StatsActivity1.this, new Observer<Integer>() {
+                    @Override
+                    public void onChanged(@Nullable Integer number) {
+                        mAdapter.setAverageAnswerForQuestion1_2(number);
+                        barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, number), false, 6);
+                        Log.i("Loaded Averages", number.toString());
+                    }
+                });
+                mResponseViewModel.getAnswerAverage1_3().observe(StatsActivity1.this, new Observer<Integer>() {
+                    @Override
+                    public void onChanged(@Nullable Integer number) {
+                        mAdapter.setAverageAnswerForQuestion1_3(number);
+                        barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, number), false, 6);
+                        Log.i("Loaded Averages", number.toString());
+                    }
+                });
+                mResponseViewModel.getAnswerAverage1_4().observe(StatsActivity1.this, new Observer<Integer>() {
+                    @Override
+                    public void onChanged(@Nullable Integer number) {
+                        mAdapter.setAverageAnswerForQuestion1_4(number);
+                        barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, number), false, 6);
+                        Log.i("Loaded Averages", number.toString());
+                    }
+                });
+                mResponseViewModel.getAnswerAverage1_5().observe(StatsActivity1.this, new Observer<Integer>() {
+                    @Override
+                    public void onChanged(@Nullable Integer number) {
+                        mAdapter.setAverageAnswerForQuestion1_5(number);
+                        barGraph_Data1.appendData(new DataPoint(barGraph_Data1.getHighestValueX() + 1, number), false, 6);
+                        Log.i("Loaded Averages", number.toString());
+                    }
+                });
+            }
+        });
+
+        barGraph_Data1.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+            @Override
+            public int get(DataPoint data) {
+                return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
+            }
+        });
+        staticLabelsForBarGraphs.setHorizontalLabels(new String[] { fillerForbug, movie_1, movie_2, movie_3, movie_4, movie_5 });
+        bar_graph1.removeAllSeries();
+        bar_graph1.addSeries(barGraph_Data1);
+        barGraph_Data1.setSpacing(45);
+        barGraph_Data1.setDrawValuesOnTop(true);
+        barGraph_Data1.setValuesOnTopColor(Color.BLUE);
     }
 }
+
+
+
+//        Log.i("Loaded Averages", mAnswerAverage2.toString());
+//        Log.i("Loaded Averages", mAnswerAverage3.toString());
+//        Log.i("Loaded Averages", mAnswerAverage4.toString());
+//        Log.i("Loaded Averages", mAnswerAverage5.toString());
+
+
 //         barGraph_Data1 = new LineGraphSeries<>(new DataPoint[] {});
 
 //        GraphView bar_graph1 = findViewById(R.id.bar_graph1);
@@ -71,10 +165,7 @@ public class StatsActivity extends AppCompatActivity {
 //        // This is so that it messes up the one on the bottom.
 //        GraphView bar_graph6 = findViewById(R.id.bar_graph6);
 //
-//        StaticLabelsFormatter staticLabelsForBarGraphs = new StaticLabelsFormatter(bar_graph6);
-//
-//        staticLabelsForBarGraphs.setHorizontalLabels(new String[] { movie_1, movie_2, movie_3, movie_4, movie_5 });
-//        staticLabelsForBarGraphs.setVerticalLabels(new String[] {"low", "medium", "high"});
+
 //
 //        bar_graph1.setTitle("Recommended Movies");
 //        bar_graph1.getGridLabelRenderer().setVerticalLabelsVisible(false);
@@ -90,11 +181,11 @@ public class StatsActivity extends AppCompatActivity {
 ////        barGraph_Data1.setSpacing(15);
 ////        barGraph_Data1.setDrawValuesOnTop(true);
 //
-//        AsyncTask<Void, Void, List<Integer>> movie1responses1 = getResponse(1, 2, db);
-//        AsyncTask<Void, Void, List<Integer>> movie2responses1 = getResponse(2, 2, db);
-//        AsyncTask<Void, Void, List<Integer>> movie3responses1 = getResponse(3, 2, db);
-//        AsyncTask<Void, Void, List<Integer>> movie4responses1 = getResponse(4, 2, db);
-//        AsyncTask<Void, Void, List<Integer>> movie5responses1 = getResponse(5, 2, db);
+//        AsyncTask<Void, Void, Integer> movie1responses1 = getResponse(1, 2, db);
+//        AsyncTask<Void, Void, Integer> movie2responses1 = getResponse(2, 2, db);
+//        AsyncTask<Void, Void, Integer> movie3responses1 = getResponse(3, 2, db);
+//        AsyncTask<Void, Void, Integer> movie4responses1 = getResponse(4, 2, db);
+//        AsyncTask<Void, Void, Integer> movie5responses1 = getResponse(5, 2, db);
 //
 //        Integer average11 = 1;
 //        Integer average21 = 2;
@@ -267,11 +358,11 @@ public class StatsActivity extends AppCompatActivity {
 //    private void addEntry() {
 //        ResponseRoomDatabase db = ResponseRoomDatabase.getDatabase(StatsActivity.this);
 //
-//        AsyncTask<Void, Void, List<Integer>> movie1responses = getResponse(1, 1, db);
-//        AsyncTask<Void, Void, List<Integer>> movie2responses = getResponse(2, 1, db);
-//        AsyncTask<Void, Void, List<Integer>> movie3responses = getResponse(3, 1, db);
-//        AsyncTask<Void, Void, List<Integer>> movie4responses = getResponse(4, 1, db);
-//        AsyncTask<Void, Void, List<Integer>> movie5responses = getResponse(5, 1, db);
+//        AsyncTask<Void, Void, Integer> movie1responses = getResponse(1, 1, db);
+//        AsyncTask<Void, Void, Integer> movie2responses = getResponse(2, 1, db);
+//        AsyncTask<Void, Void, Integer> movie3responses = getResponse(3, 1, db);
+//        AsyncTask<Void, Void, Integer> movie4responses = getResponse(4, 1, db);
+//        AsyncTask<Void, Void, Integer> movie5responses = getResponse(5, 1, db);
 //
 //        Integer average1;
 //        Integer average2;

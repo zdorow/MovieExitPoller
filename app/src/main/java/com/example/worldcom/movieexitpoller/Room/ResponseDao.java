@@ -14,8 +14,8 @@ public interface ResponseDao {
     @Query("SELECT * from responseTable")
     LiveData<List<Response>> getAllResponses();
 
-    @Query("SELECT questionAnswer from responseTable where movieId = :mId AND questionId = :questionId")
-    LiveData<List<Integer>> getAnswers(Integer mId, Integer questionId);
+    @Query("SELECT AVG(questionAnswer) from responseTable where movieId = :mId AND questionId = :questionId")
+    LiveData<Integer> getAnswerAverage(Integer mId, Integer questionId);
 
     @Query("SELECT DISTINCT movieName from responseTable")
     LiveData<List<String>> getMovieNames();

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intentMovies);
                     return true;
                 case R.id.navigation_stats:
-                    Intent intentStats = new Intent(MainActivity.this, StatsActivity.class);
+                    Intent intentStats = new Intent(MainActivity.this, StatsActivity1.class);
                     intentStats.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentStats);
                     return true;

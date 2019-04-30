@@ -22,7 +22,22 @@
             android:label="Exit Poll">
         </activity>
         <activity
-            android:name=".Activities.StatsActivity"
+            android:name=".Activities.StatsActivity1"
+            android:label="Exit Poll Stats" />
+        <activity
+            android:name=".Activities.StatsActivity2"
+            android:label="Exit Poll Stats" />
+        <activity
+            android:name=".Activities.StatsActivity3"
+            android:label="Exit Poll Stats" />
+        <activity
+            android:name=".Activities.StatsActivity4"
+            android:label="Exit Poll Stats" />
+        <activity
+            android:name=".Activities.StatsActivity5"
+            android:label="Exit Poll Stats" />
+        <activity
+            android:name=".Activities.StatsActivity6"
             android:label="Exit Poll Stats" />
     </application>
 
