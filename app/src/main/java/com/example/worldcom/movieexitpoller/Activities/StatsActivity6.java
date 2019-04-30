@@ -65,8 +65,17 @@ public class StatsActivity6 extends AppCompatActivity {
             }
         });
 
+        final Button button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentStats = new Intent(StatsActivity6.this, StatsActivity5.class);
+                intentStats.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentStats);
+            }
+        });
 
-        String fillerForbug = "";
+
+        String fillerForBug = "";
         String movie_1 = getString(R.string.movie_1_short);
         String movie_2 = getString(R.string.movie_2_short);
         String movie_3 = getString(R.string.movie_3_short);
@@ -91,47 +100,51 @@ public class StatsActivity6 extends AppCompatActivity {
         bar_graph6.getGridLabelRenderer().setLabelFormatter(staticLabelsForBarGraphs);
 
         // This is for a bug since it will only set the bar at the lowest set value.
-        barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, 0), false, 6);
+        barGraph_Data6.appendData(new DataPoint(0, 0), false, 6);
 
         mResponseViewModel.getAnswerAverage6_1().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer number) {
                 mAdapter.setAverageAnswerForQuestion6_1(number);
-                barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, number), false, 6);
+                barGraph_Data6.appendData(new DataPoint(1, number), false, 6);
                 Log.i("Loaded Averages", number.toString());
 
                 mResponseViewModel.getAnswerAverage6_2().observe(StatsActivity6.this, new Observer<Integer>() {
                     @Override
                     public void onChanged(@Nullable Integer number) {
                         mAdapter.setAverageAnswerForQuestion6_2(number);
-                        barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, number), false, 6);
+                        barGraph_Data6.appendData(new DataPoint(2, number), false, 6);
                         Log.i("Loaded Averages", number.toString());
+
+                        mResponseViewModel.getAnswerAverage6_3().observe(StatsActivity6.this, new Observer<Integer>() {
+                            @Override
+                            public void onChanged(@Nullable Integer number) {
+                                mAdapter.setAverageAnswerForQuestion6_3(number);
+                                barGraph_Data6.appendData(new DataPoint(3, number), false, 6);
+                                Log.i("Loaded Averages", number.toString());
+
+                                mResponseViewModel.getAnswerAverage6_4().observe(StatsActivity6.this, new Observer<Integer>() {
+                                    @Override
+                                    public void onChanged(@Nullable Integer number) {
+                                        mAdapter.setAverageAnswerForQuestion6_4(number);
+                                        barGraph_Data6.appendData(new DataPoint(4, number), false, 6);
+                                        Log.i("Loaded Averages", number.toString());
+
+                                        mResponseViewModel.getAnswerAverage6_5().observe(StatsActivity6.this, new Observer<Integer>() {
+                                            @Override
+                                            public void onChanged(@Nullable Integer number) {
+                                                mAdapter.setAverageAnswerForQuestion6_5(number);
+                                                barGraph_Data6.appendData(new DataPoint(5, number), false, 6);
+                                                Log.i("Loaded Averages", number.toString());
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
-                mResponseViewModel.getAnswerAverage6_3().observe(StatsActivity6.this, new Observer<Integer>() {
-                    @Override
-                    public void onChanged(@Nullable Integer number) {
-                        mAdapter.setAverageAnswerForQuestion6_3(number);
-                        barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, number), false, 6);
-                        Log.i("Loaded Averages", number.toString());
-                    }
-                });
-                mResponseViewModel.getAnswerAverage6_4().observe(StatsActivity6.this, new Observer<Integer>() {
-                    @Override
-                    public void onChanged(@Nullable Integer number) {
-                        mAdapter.setAverageAnswerForQuestion6_4(number);
-                        barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, number), false, 6);
-                        Log.i("Loaded Averages", number.toString());
-                    }
-                });
-                mResponseViewModel.getAnswerAverage6_5().observe(StatsActivity6.this, new Observer<Integer>() {
-                    @Override
-                    public void onChanged(@Nullable Integer number) {
-                        mAdapter.setAverageAnswerForQuestion6_5(number);
-                        barGraph_Data6.appendData(new DataPoint(barGraph_Data6.getHighestValueX() + 1, number), false, 6);
-                        Log.i("Loaded Averages", number.toString());
-                    }
-                });
+
             }
         });
 
@@ -141,7 +154,7 @@ public class StatsActivity6 extends AppCompatActivity {
                 return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
             }
         });
-        staticLabelsForBarGraphs.setHorizontalLabels(new String[] { fillerForbug, movie_1, movie_2, movie_3, movie_4, movie_5 });
+        staticLabelsForBarGraphs.setHorizontalLabels(new String[] { fillerForBug, movie_1, movie_2, movie_3, movie_4, movie_5 });
         bar_graph6.removeAllSeries();
         bar_graph6.addSeries(barGraph_Data6);
         barGraph_Data6.setSpacing(45);

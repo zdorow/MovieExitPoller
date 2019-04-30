@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    tools:context="com.example.worldcom.movieexitpoller.Activities.MainActivity">
 
     <TextView
         android:id="@+id/message"
@@ -31,10 +31,8 @@
 
     <include
         layout="@layout/content_main"
-        android:layout_width="422dp"
-        android:layout_height="514dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        android:layout_width="407dp"
+        android:layout_height="522dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"

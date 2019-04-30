@@ -26,4 +26,5 @@
     <string name="next_graph">Next Graph</string>
     <string name="recent_results">Here are the most recent results of the surveys:</string>
     <string name="begin_poll">Take another poll</string>
+    <string name="back">Previous Graph</string>
 </resources>

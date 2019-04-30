@@ -55,6 +55,9 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
 
+            // For data cleanup so we can easily see that the changes are reflected in the graphs.
+            //mDao.deleteAll();
+
             List<String> currentMovieNames = CurrentMovies.getAll();
 
             Integer movieId1 = 1;
@@ -63,13 +66,14 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             Integer movieId4 = 4;
             Integer movieId5 = 5;
 
+            // Test data in sequential order to ensure output is in the right order.
             Map<Integer, Integer> movie1Responses = new HashMap<Integer, Integer>() {{
-                put(1,5);
-                put(2,4);
-                put(3,3);
-                put(4,5);
-                put(5,5);
-                put(6,5);
+                put(1,1);
+                put(2,1);
+                put(3,1);
+                put(4,1);
+                put(5,1);
+                put(6,1);
 
             }};
             for (Map.Entry<Integer, Integer> entry : movie1Responses.entrySet()){
@@ -78,12 +82,12 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             }
 
             Map<Integer, Integer> movie2Responses = new HashMap<Integer, Integer>() {{
-                put(1,5);
-                put(2,4);
-                put(3,3);
+                put(1,2);
+                put(2,2);
+                put(3,2);
                 put(4,2);
-                put(5,5);
-                put(6,5);
+                put(5,2);
+                put(6,2);
             }};
             for (Map.Entry<Integer, Integer> entry : movie2Responses.entrySet()){
                 Response response = new Response(currentMovieNames.get(1), movieId2, entry.getKey(), entry.getValue());
@@ -91,12 +95,12 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
             }
 
             Map<Integer, Integer> movie3Responses = new HashMap<Integer, Integer>() {{
-                put(1,5);
-                put(2,4);
+                put(1,3);
+                put(2,3);
                 put(3,3);
                 put(4,3);
-                put(5,5);
-                put(6,5);
+                put(5,3);
+                put(6,3);
             }};
 
             for (Map.Entry<Integer, Integer> entry : movie3Responses.entrySet()){
@@ -104,12 +108,12 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
                 mDao.insert(response);
             }
             Map<Integer, Integer> movie4Responses = new HashMap<Integer, Integer>() {{
-                put(1,5);
+                put(1,4);
                 put(2,4);
-                put(3,3);
-                put(4,1);
-                put(5,5);
-                put(6,5);
+                put(3,4);
+                put(4,4);
+                put(5,4);
+                put(6,4);
             }};
 
             for (Map.Entry<Integer, Integer> entry : movie4Responses.entrySet()){
@@ -119,10 +123,10 @@ public abstract class ResponseRoomDatabase extends RoomDatabase {
 
             Map<Integer, Integer> movie5Responses = new HashMap<Integer, Integer>() {{
                 put(1,5);
-                put(2,4);
-                put(3,3);
+                put(2,5);
+                put(3,5);
                 put(4,5);
-                put(5,2);
+                put(5,5);
                 put(6,5);
             }};
 
