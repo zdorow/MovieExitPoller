@@ -1,22 +1,26 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Activities;
 
-import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import com.idescout.sql.SqlScoutServer;
+import com.example.worldcom.movieexitpoller.R;
+import com.example.worldcom.movieexitpoller.ViewControl.MovieListViewModel;
+import com.example.worldcom.movieexitpoller.ViewControl.MovieListAdapter;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final List<String> moviesList = CurrentMovies.getAll();
+    private MovieListViewModel mMovieListViewModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intentMovies);
                     return true;
                 case R.id.navigation_stats:
-                    Intent intentStats = new Intent(MainActivity.this, StatsActivity.class);
+                    Intent intentStats = new Intent(MainActivity.this, StatsActivity1.class);
                     intentStats.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentStats);
                     return true;
@@ -43,15 +47,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SqlScoutServer.create(this, getPackageName());
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerview_main);
+        mMovieListViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerview);
-        MovieListAdapter mAdapter = new MovieListAdapter(this, moviesList);
+        final MovieListAdapter mAdapter = new MovieListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mMovieListViewModel.getAllMovies().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable List<String> strings) {
+               mAdapter.setMovies(strings);
+            }
+        });
     }
 
 }

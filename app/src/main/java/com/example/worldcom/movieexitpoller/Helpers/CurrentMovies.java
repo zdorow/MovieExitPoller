@@ -1,4 +1,4 @@
-package com.example.worldcom.movieexitpoller;
+package com.example.worldcom.movieexitpoller.Helpers;
 
 import java.util.Arrays;
 import java.util.List;

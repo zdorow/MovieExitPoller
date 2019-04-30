@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.worldcom.movieexitpoller.Activities.SurveyActivity">
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -396,7 +397,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="How likely are you to see another movie with the female lead?"
+                android:text="How likely are you to see another movie by this director?"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="12sp"
                 android:textStyle="bold"
